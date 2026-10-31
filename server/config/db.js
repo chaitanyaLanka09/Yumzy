@@ -1,9 +1,18 @@
 const mongoose = require('mongoose');
 
 const connectDB = async () => {
+  const uri = process.env.MONGODB_URI;
+
+  console.log('[Database] MONGODB_URI present:', Boolean(uri));
+  console.log('[Database] Using MongoDB Atlas:', uri?.startsWith('mongodb+srv://'));
+
   try {
-    const conn = await mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/yumzy');
-    console.log(`[Database] MongoDB Connected: ${conn.connection.host}/${conn.connection.name}`);
+    if (!uri) {
+      throw new Error('MONGODB_URI is missing from environment variables');
+    }
+
+    const conn = await mongoose.connect(uri);
+    console.log(`[Database] Connected: ${conn.connection.host}/${conn.connection.name}`);
     return conn;
   } catch (error) {
     console.error(`[Database Error] ${error.message}`);
