@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #16845B;
+  --color-primary-dark: #105C42;
+  --color-primary-light: #E8F5EF;
+  --color-accent: #FF8A45;
+  --color-accent-dark: #E66F28;
+  --color-accent-light: #FFF2EB;
+  --color-bg-light: #F8FAF7;
+  --color-card-bg: #FFFFFF;
+  --color-text-main: #202923;
+  --color-text-muted: #78847D;
+  --color-success: #218B59;
+  --color-warning: #E6A23C;
+  --color-danger: #DC5151;
+
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+:root {
+  --primary: #16845B;
+  --primary-dark: #105C42;
+  --accent: #FF8A45;
+  --bg-main: #F8FAF7;
+  --card-bg: #FFFFFF;
+  --text-primary: #202923;
+  --text-secondary: #78847D;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-sans);
+  background-color: #F8FAF7;
+  color: #202923;
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F1F4F0;
+}
+::-webkit-scrollbar-thumb {
+  background: #CBD5CD;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94A398;
+}
+
+/* Wide-screen Full-width SaaS Container (90-94% viewport) */
+.app-container {
+  width: 100%;
+  max-width: 94%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .app-container {
+    max-width: 93%;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .app-container {
+    max-width: 92%;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (min-width: 1920px) {
+  .app-container {
+    max-width: 1820px;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
+
+/* Glass & Card Effects */
+.card-hover {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card-hover:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px -10px rgba(16, 92, 66, 0.12);
+}
+
+/* Leaflet container height fix */
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  border-radius: 0.75rem;
+  z-index: 10;
+}
