@@ -1,13 +1,14 @@
+
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api',
+  baseURL: import.meta.env.VITE_API_URL || '/api',
   headers: {
     'Content-Type': 'application/json'
   }
 });
 
-// Intercept requests and attach JWT token
+// Attach JWT token to requests
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('yumzy_token');
@@ -19,12 +20,11 @@ api.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-// Intercept responses for auth errors
+// Handle authentication errors
 api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
-      // Don't auto-redirect on login failure attempts
       if (!error.config.url.includes('/auth/login')) {
         localStorage.removeItem('yumzy_token');
         localStorage.removeItem('yumzy_user');

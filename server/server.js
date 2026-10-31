@@ -67,8 +67,18 @@ app.use((req, res, next) => {
 });
 
 // Security and utility middleware
-app.use(helmet({ crossOriginResourcePolicy: false }));
-
+app.use(
+  helmet({
+    crossOriginResourcePolicy: false,
+    contentSecurityPolicy: {
+      directives: {
+        ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+        "img-src": ["'self'", "data:", "blob:", "https:"],
+        "connect-src": ["'self'", "https:", "wss:"]
+      }
+    }
+  })
+);
 app.use(cors({
   origin: process.env.CLIENT_URL || 'http://localhost:5173',
   credentials: true
